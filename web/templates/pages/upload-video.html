@@ -1,0 +1,26 @@
+{{template "base" .}}
+{{define "content"}}
+<div class="grid grid-cols-6">
+    <div class="mt-5 col-span-6 sm:col-span-4">
+        <form method="post" action="/upload-video">
+            <p class="text-red-500 italic mb-5">
+                {{.}}
+            </p>
+            <h5>Upload video</h5>
+            <hr/>
+            <div class="mt-4">
+                <label for="title" class="block mb-2 text-sm font-medium">Video Title</label>
+                <input type="text" id="title" name="title" class="border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            </div>
+            <div class="mt-2">
+                <label for="description" class="block mb-2 text-sm font-medium">Description</label>
+                <textarea type="text" id="description" name="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"></textarea>
+            </div>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5">
+                Upload
+              </button>
+        </form>
+    </div>
+</div>
+{{end}}
+
