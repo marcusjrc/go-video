@@ -35,7 +35,7 @@ variable "backend_auto_scaling_max" {
 variable "ecs_ami_image" {
     description = "AMI used for EC2 instances on ECS"
     type = string
-    default = "ami-09fd16644beea3565"
+    default = "ami-030251beb0d7d0157"
 }
 
 variable "ecs_instance_type" {

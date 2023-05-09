@@ -11,60 +11,72 @@ resource "aws_cloudwatch_log_group" "nginx-log-group" {
 resource "aws_ecs_task_definition" "backend" {
   family = "backend"
   container_definitions = <<EOF
-[
-  {
-    "name": "backend",
-    "image": "${aws_ecr_repository.govideo.repository_url}:govideo",
-    "cpu": 512,
-    "memoryReservation": 200,
-    "essential": true,
-    "environment": [
-      {"name": "DOMAIN", "value": "${var.domain}"},
-      {"name": "REGION", "value": "${var.region}"},
-      {"name": "DB_PASSWORD", "value": "${var.db_password}"},
-      {"name": "DB_HOST", "value": "${module.db.db_instance_address}"},
-      {"name": "DB_USERNAME", "value": "${module.db.db_instance_username}"},
-      {"name": "DB_NAME", "value": "${module.db.db_instance_name}"},
-    ],
-    "portMappings": [
-        {
-          "containerPort": 8002,
-          "hostPort": 8002
-        }
-    ],
-    "logConfiguration": {
-      "logDriver": "awslogs",
-      "options": {
-        "awslogs-region": "${var.region}",
-        "awslogs-group": "${aws_cloudwatch_log_group.backend-log-group.name}",
-        "awslogs-stream-prefix": "ec2"
-      }
-    }
-  },
-  {
-    "name": "nginx-reverse-proxy",
-    "image": "${aws_ecr_repository.nginx-reverse-proxy.repository_url}:latest",
-    "memoryReservation": 128,
-    "cpu": 1024,
-    "essential": true,
-    "logConfiguration": {
-      "logDriver": "awslogs",
-      "options": {
-        "awslogs-region": "${var.region}",
-        "awslogs-group": "${aws_cloudwatch_log_group.nginx-log-group.name}",
-        "awslogs-stream-prefix": "ec2"
-      }
-    },
-    "links": [
-      "backend"
-    ],
-    "portMappings": [
-         {
-           "containerPort": 80,
-           "hostPort": 80
-         }
-    ]
-  }
+[{
+		"name": "backend",
+		"image": "${aws_ecr_repository.govideo.repository_url}:govideo",
+		"cpu": 512,
+		"memoryReservation": 200,
+		"essential": true,
+		"environment": [{
+				"name": "DOMAIN",
+				"value": "${var.domain}"
+			},
+			{
+				"name": "REGION",
+				"value": "${var.region}"
+			},
+			{
+				"name": "DB_PASSWORD",
+				"value": "${var.db_password}"
+			},
+			{
+				"name": "DB_HOST",
+				"value": "${module.db.db_instance_address}"
+			},
+			{
+				"name": "DB_USERNAME",
+				"value": "${module.db.db_instance_username}"
+			},
+			{
+				"name": "DB_NAME",
+				"value": "${module.db.db_instance_name}"
+			}
+		],
+		"portMappings": [{
+			"containerPort": 8002,
+			"hostPort": 8002
+		}],
+		"logConfiguration": {
+			"logDriver": "awslogs",
+			"options": {
+				"awslogs-region": "${var.region}",
+				"awslogs-group": "${aws_cloudwatch_log_group.backend-log-group.name}",
+				"awslogs-stream-prefix": "ec2"
+			}
+		}
+	},
+	{
+		"name": "nginx-reverse-proxy",
+		"image": "${aws_ecr_repository.nginx-reverse-proxy.repository_url}:latest",
+		"memoryReservation": 128,
+		"cpu": 1024,
+		"essential": true,
+		"logConfiguration": {
+			"logDriver": "awslogs",
+			"options": {
+				"awslogs-region": "${var.region}",
+				"awslogs-group": "${aws_cloudwatch_log_group.nginx-log-group.name}",
+				"awslogs-stream-prefix": "ec2"
+			}
+		},
+		"links": [
+			"backend"
+		],
+		"portMappings": [{
+			"containerPort": 80,
+			"hostPort": 80
+		}]
+	}
 ]
 EOF
 }
