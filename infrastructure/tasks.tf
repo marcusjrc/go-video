@@ -43,8 +43,8 @@ resource "aws_ecs_task_definition" "backend" {
 			}
 		],
 		"portMappings": [{
-			"containerPort": 8002,
-			"hostPort": 8002
+			"containerPort": 8080,
+			"hostPort": 8080
 		}],
 		"logConfiguration": {
 			"logDriver": "awslogs",
