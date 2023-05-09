@@ -9,6 +9,7 @@ import (
 func SetupRouter(server *echo.Echo, handler *models.Handler) {
 	webGroup := server.Group("/")
 	webGroup.GET("", api.Home(handler))
+	webGroup.GET("healthcheck", api.Healthcheck(handler))
 	webGroup.GET("video/:id", api.Video(handler))
 	webGroup.GET("upload-video", api.UploadVideo(handler))
 	webGroup.POST("upload-video", api.PostUploadVideo(handler))

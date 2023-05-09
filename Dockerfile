@@ -18,7 +18,9 @@ FROM alpine:latest
 WORKDIR /
 
 COPY --from=BuildStage /build /build
+COPY --from=BuildStage /app/migrations /migrations
+COPY --from=BuildStage /app/deploy.sh /
 
 EXPOSE 8080
 
-ENTRYPOINT ["/build"]
+ENTRYPOINT ["/deploy.sh"]
