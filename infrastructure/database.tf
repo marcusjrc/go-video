@@ -36,7 +36,7 @@ module "db" {
 
   subnet_ids = module.vpc.database_subnets
   # DB parameter group
-  family = "postgres14"
+  family = "postgres15"
 
   # DB option group
   major_engine_version = "15"
