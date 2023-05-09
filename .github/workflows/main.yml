@@ -47,7 +47,7 @@ jobs:
       - name: Deploy to AWS ECR
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          BACKEND_ECR_REPOSITORY: backend
+          BACKEND_ECR_REPOSITORY: govideo
           BACKEND_IMAGE_TAG: latest
           NGINX_ECR_REPOSITORY: nginx-reverse-proxy
           NGINX_IMAGE_TAG: latest
