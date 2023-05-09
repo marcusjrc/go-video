@@ -1,3 +1,13 @@
+variable "aws_access_key_id" {
+    description = "AWS Access Key id for S3 bucket access"
+    type = string
+}
+
+variable "aws_secret_access_key" {
+    description = "AWS Secret Access key for S3 bucket access"
+    type = string
+}
+
 variable "region" {
     description = "AWS Region to deploy to"
     type = string
