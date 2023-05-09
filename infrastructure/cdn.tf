@@ -56,7 +56,7 @@ resource "aws_cloudfront_distribution" "app_distribution" {
             }
         }
         min_ttl                = 0
-        default_ttl            = 3600
+        default_ttl            = 0
         max_ttl                = 0
     }
 
