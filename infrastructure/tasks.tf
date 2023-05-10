@@ -13,7 +13,7 @@ resource "aws_ecs_task_definition" "backend" {
   container_definitions = <<EOF
 [{
 		"name": "backend",
-		"image": "${aws_ecr_repository.govideo.repository_url}:govideo",
+		"image": "${aws_ecr_repository.govideo.repository_url}:latest",
 		"cpu": 512,
 		"memoryReservation": 200,
 		"essential": true,
