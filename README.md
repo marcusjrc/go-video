@@ -1,3 +1,5 @@
+WORK IN PROGRESS (mainly using to learn Go)
+
 # Go-video
 
 ## Overview
